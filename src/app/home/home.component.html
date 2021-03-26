@@ -1,0 +1,67 @@
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div *ngFor="let car of cars">
+        <p-card [header]="car.brand" [subheader]="car.model" [style]="{width: '100%'}" styleClass="p-card-shadow">
+          <ng-template pTemplate="header">
+            <img src="{{baseUrl + '/car/getImage/' + car.idCar}}">
+          </ng-template>
+          <p>{{car.description}}!</p>
+          <ng-template pTemplate="footer">
+            <p-button class="float-right" label="comments" icon="pi pi-comments" styleClass="p-button-secondary"
+                      [style]="{'margin-left': '.5em','margin-bottom': '.5em'}" (onClick)="getComments(car)"></p-button>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+<p-dialog *ngIf="selectedCar" header="{{(authService.authUser ? selectedCar.brand + ' Comments' : 'Sign in first')}}" [(visible)]="displayModal" [modal]="true"
+          [style]="{width: '50vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+
+  <div class="container mt-1 d-flex justify-content-center comments">
+    <div class="row" style="width: 100%;max-height: 330px;overflow: auto;">
+      <div class="col-md-12">
+        <div class="card">
+          <ul *ngIf="authService.authUser" class="list-unstyled">
+            <li *ngFor="let comment of comments" class="media my-5"><span class="round"> <img
+              src="https://img.icons8.com/bubbles/100/000000/groups.png" class="align-self-start mr-3"> </span>
+              <div class="media-body">
+                <div class="row d-flex">
+                  <h6 class="user">{{comment.user.login}}</h6>
+                  <div class="ml-auto">
+                    <p class="text">{{comment.date | date: 'M/d/yy, h:mm a'}}</p>
+                  </div>
+                </div>
+                <p class="text">{{comment.comment}} </p>
+              </div>
+            </li>
+          </ul>
+          <div *ngIf="!authService.authUser">
+            <app-authentification></app-authentification>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <div class="col-md-12" *ngIf="authService.authUser">
+      <div class="row">
+        <div class="col-md-11">
+          <input type="text" placeholder="Add comment" pInputText [(ngModel)]="commentText" style="width: 100%">
+        </div>
+        <div class="col-md-1">
+          <p-button icon="pi pi-comment" (click)="addComment()"
+                    styleClass="p-button-text"></p-button>
+        </div>
+      </div>
+    </div>
+
+
+  </ng-template>
+</p-dialog>

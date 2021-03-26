@@ -1,0 +1,18 @@
+<form [formGroup]="formGroup" class="form-login">
+
+  <span *ngIf="!isValid" style="color: #ef5065"> wrong username or password</span>
+
+  <span class="p-float-label">
+      <input id="login" type="text" pInputText formControlName="login" [ngClass]="{'ng-invalid ng-dirty' : submitted && this.f.login.errors}">
+      <label for="login">Username (default username in database "user")</label>
+  </span>
+
+    <span class="p-float-label">
+      <input id="password" type="password" pInputText formControlName="password" [ngClass]="{'ng-invalid ng-dirty' : submitted && this.f.password.errors}">
+      <label for="password">Password (default password in database "user")</label>
+  </span>
+
+  <p-button label="sign in" icon="pi pi-sign-in" styleClass="p-button-secondary"
+            [style]="{'width': '100%'}" (click)="login()"></p-button>
+
+</form>

@@ -24,9 +24,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/primeng/resources/themes/nova/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/popper.js/dist/popper.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -88,9 +95,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "primeng/resources/themes/md-dark-deeppurple/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/popper.js/dist/popper.js"
+            ]
           }
         },
         "lint": {
@@ -119,6 +133,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "carManagmentFront"
+    }
+  },
+  "defaultProject": "carManagmentFront",
+  "cli": {
+    "analytics": "8408d62c-5901-4efe-b376-b6724552d603"
+  }
 }
